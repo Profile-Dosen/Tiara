@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiara Nur Anisah - Academic Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            /* Sendu Palette */
+            --sendu-beige: #FDFBF7;
+            --sendu-beige-dark: #F2EFE9;
+            --sendu-pink: #DAB6C4;
+            --sendu-pink-light: #F1E4E8;
+            --sendu-sage: #B2C2B6;
+            --sendu-sage-light: #E1E8E3;
+            --sendu-grey: #C5C6C7;
+            --sendu-text-main: #4A4240;
+            --sendu-text-muted: #8A8483;
+            --sendu-outline: #5A5255;
+        }
+
+        body {
+            background-color: var(--sendu-beige);
+            color: var(--sendu-text-main);
+            font-family: 'Nunito', sans-serif;
+            overflow-x: hidden;
+        }
+
+        ::selection {
+            background-color: var(--sendu-pink);
+            color: white;
+        }
+
+        .font-serif-title { font-family: 'Lora', serif; }
+
+        /* Glassmorphism Sendu */
+        .glass-sendu {
+            background: rgba(253, 251, 247, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 25px rgba(74, 66, 64, 0.04);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .glass-sendu:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(218, 182, 196, 0.15);
+            border-color: var(--sendu-pink);
+        }
+
+        /* Organic Animations */
+        @keyframes breatheSoft {
+            0%, 100% { transform: scale(1, 1) translateY(0); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+            50% { transform: scale(1.02, 0.98) translateY(3px); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+        }
+        @keyframes tailWagSoft {
+            0%, 100% { transform: rotate(-5deg); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+            50% { transform: rotate(8deg); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+        }
+        @keyframes blinkKawaii {
+            0%, 93%, 97%, 100% { transform: scaleY(1); }
+            95%, 98% { transform: scaleY(0.1); }
+        }
+        @keyframes floatSendu {
+            0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+            50% { transform: translateY(-8px); animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1); }
+        }
+        @keyframes earTwitch {
+            0%, 100% { transform: rotate(0deg); }
+            3% { transform: rotate(-8deg); }
+            6% { transform: rotate(4deg); }
+            9% { transform: rotate(0deg); }
+        }
+        @keyframes pawPoint {
+            0%, 100% { transform: rotate(0deg) translateX(0); }
+            50% { transform: rotate(-15deg) translateX(-5px); }
+        }
+
+        /* Animasi Rotasi Cincin Dekoratif */
+        @keyframes spinSlowSendu {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .anim-breathe { animation: breatheSoft 4s infinite; transform-origin: bottom center; transform-box: fill-box; }
+        .anim-tail { animation: tailWagSoft 3.5s infinite; transform-origin: bottom right; transform-box: fill-box; }
+        .anim-blink { animation: blinkKawaii 6s infinite linear; transform-origin: center; transform-box: fill-box; }
+        .anim-float { animation: floatSendu 5s infinite; }
+        .anim-ear-l { animation: earTwitch 8s infinite; transform-origin: bottom right; transform-box: fill-box; }
+        .anim-ear-r { animation: earTwitch 8s infinite; transform-origin: bottom left; transform-box: fill-box; animation-delay: 0.2s; }
+        .anim-paw { animation: pawPoint 2.5s infinite ease-in-out; transform-origin: top right; transform-box: fill-box; }
+        .spin-slow-sendu { animation: spinSlowSendu 25s linear infinite; transform-origin: center; }
+
+        .cat-wrapper:hover .anim-breathe { animation-duration: 2s; }
+        .cat-wrapper:hover .anim-tail { animation: tailWagSoft 1.5s infinite; }
+        .cat-wrapper:hover .hover-blush { fill: #E89EAE !important; transition: fill 0.3s ease; }
+
+        /* Scroll Reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Academic Badge */
+        .academic-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: white;
+            border: 1px solid var(--sendu-beige-dark);
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--sendu-text-muted);
+            transition: all 0.3s ease;
+        }
+        .academic-badge:hover {
+            border-color: var(--sendu-pink);
+            color: var(--sendu-pink);
+            transform: translateY(-2px);
+            box-shadow: 0 3px 8px rgba(218, 182, 196, 0.2);
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--sendu-beige); }
+        ::-webkit-scrollbar-thumb { background: var(--sendu-pink); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--sendu-sage); }
+    </style>
+</head>
+<body class="min-h-screen relative overflow-x-hidden">
+
+    <!-- SVG Definitions for Gradients -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="catBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="100%" stop-color="#F5F3F0" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- NAVBAR RESPONSIVE -->
+    <nav class="fixed w-full top-0 z-50 bg-[var(--sendu-beige)]/90 backdrop-blur-xl border-b border-[var(--sendu-beige-dark)] shadow-sm transition-all duration-300 py-3">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center">
+            <!-- Ikon "T" dan Nama -->
+            <a href="#hero" class="flex items-center gap-2.5 font-serif-title text-lg sm:text-xl font-semibold text-[var(--sendu-text-main)] hover:opacity-80 transition-opacity">
+                <div class="w-7 h-7 rounded-full bg-[var(--sendu-pink-light)] flex items-center justify-center border border-[var(--sendu-pink)] shadow-sm shrink-0">
+                    <span class="font-serif-title font-bold text-base text-[var(--sendu-outline)] italic">T</span>
+                </div>
+                <span class="truncate tracking-tight">Tiara Nur Anisah.</span>
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-7 text-[var(--sendu-text-muted)] text-sm font-semibold tracking-wider">
+                <a href="#about" class="hover:text-[var(--sendu-text-main)] transition-colors">Profil</a>
+                <a href="#research" class="hover:text-[var(--sendu-text-main)] transition-colors">Riset</a>
+                <a href="#books" class="hover:text-[var(--sendu-text-main)] transition-colors">Buku</a>
+                <a href="#teaching" class="hover:text-[var(--sendu-text-main)] transition-colors">Pengajaran</a>
+            </div>
+            
+            <!-- Contact Button Desktop -->
+            <a href="https://api.whatsapp.com/send?phone=6287706429691&text=Halo%20Ibu%20Tiara,%20saya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut." target="_blank" class="hidden md:flex bg-[var(--sendu-outline)] text-white hover:bg-[var(--sendu-text-main)] px-5 py-2 rounded-full text-xs font-semibold transition-all shadow-sm">
+                Hubungi Beliau
+            </a>
+
+            <!-- Hamburger Menu Icon for Mobile -->
+            <button id="mobile-menu-btn" class="md:hidden text-[var(--sendu-text-main)] p-1.5 focus:outline-none hover:bg-[var(--sendu-beige-dark)] rounded-md transition-colors">
+                <i data-lucide="menu" id="icon-menu" class="w-5 h-5"></i>
+                <i data-lucide="x" id="icon-close" class="w-5 h-5 hidden"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="md:hidden absolute top-full left-0 w-full bg-[var(--sendu-beige)]/95 backdrop-blur-xl border-b border-[var(--sendu-beige-dark)] shadow-md transition-all duration-300 ease-in-out max-h-0 opacity-0 overflow-hidden py-0">
+            <div class="flex flex-col gap-3 px-6 text-[var(--sendu-text-main)] font-semibold text-center text-sm">
+                <a href="#about" class="mobile-link hover:text-[var(--sendu-pink)] py-1.5 border-b border-[var(--sendu-beige-dark)]">Profil</a>
+                <a href="#research" class="mobile-link hover:text-[var(--sendu-pink)] py-1.5 border-b border-[var(--sendu-beige-dark)]">Riset</a>
+                <a href="#books" class="mobile-link hover:text-[var(--sendu-pink)] py-1.5 border-b border-[var(--sendu-beige-dark)]">Buku</a>
+                <a href="#teaching" class="mobile-link hover:text-[var(--sendu-pink)] py-1.5 mb-1">Pengajaran</a>
+                <a href="https://api.whatsapp.com/send?phone=6287706429691&text=Halo%20Ibu%20Tiara,%20saya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut." target="_blank" class="mobile-link bg-[var(--sendu-outline)] text-white hover:bg-[var(--sendu-text-main)] px-4 py-2.5 rounded-full text-xs font-semibold transition-all shadow-sm w-full mx-auto max-w-[200px]">
+                    Hubungi Beliau
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="pt-24 pb-12 md:pt-36 md:pb-16 px-4 sm:px-6 min-h-[85vh] flex items-center relative overflow-hidden">
+        <div class="absolute top-10 right-0 md:right-10 w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-[var(--sendu-pink-light)] rounded-full blur-[80px] md:blur-[100px] opacity-50 anim-float"></div>
+        <div class="absolute bottom-10 left-0 md:left-10 w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-[var(--sendu-sage-light)] rounded-full blur-[60px] md:blur-[80px] opacity-50 anim-float" style="animation-delay: 2s;"></div>
+
+        <div class="max-w-6xl mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-12 w-full relative z-10">
+            
+            <div class="lg:w-1/2 w-full z-20 text-center lg:text-left mt-6 lg:mt-0">
+                <!-- High Impact Roles (Dynamic Tags) -->
+                <div class="reveal flex flex-wrap gap-2 justify-center lg:justify-start mb-5 md:mb-7">
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[var(--sendu-sage)] bg-[var(--sendu-sage-light)]/60 text-[var(--sendu-text-main)] text-[10px] sm:text-xs font-bold shadow-sm hover:-translate-y-0.5 transition-transform">
+                        <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-[var(--sendu-outline)]"></i> Dosen Manajemen
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[var(--sendu-pink)] bg-[var(--sendu-pink-light)]/60 text-[var(--sendu-text-main)] text-[10px] sm:text-xs font-bold shadow-sm hover:-translate-y-0.5 transition-transform">
+                        <i data-lucide="globe" class="w-3.5 h-3.5 text-[var(--sendu-pink)]"></i> Peneliti Scopus
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[var(--sendu-sage)] bg-[var(--sendu-sage-light)]/60 text-[var(--sendu-text-main)] text-[10px] sm:text-xs font-bold shadow-sm hover:-translate-y-0.5 transition-transform">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-[var(--sendu-outline)]"></i> Editor Jurnal
+                    </div>
+                    <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-[var(--sendu-pink)] bg-[var(--sendu-pink-light)]/60 text-[var(--sendu-text-main)] text-[10px] sm:text-xs font-bold shadow-sm hover:-translate-y-0.5 transition-transform">
+                        <i data-lucide="trending-up" class="w-3.5 h-3.5 text-[var(--sendu-pink)]"></i> Praktisi Dig. Marketing
+                    </div>
+                </div>
+                
+                <h1 class="reveal delay-100 text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif-title font-medium text-[var(--sendu-text-main)] leading-[1.15] mb-4 md:mb-5">
+                    Belajar Cerdas, Adaptif, <br class="hidden md:block"/>
+                    <span class="italic text-[var(--sendu-text-muted)] font-light">dan Relevan di Era Digital.</span>
+                </h1>
+                
+                <!-- Ringkasan Karier Deskripsi Singkat -->
+                <p class="reveal delay-200 text-sm md:text-base text-[var(--sendu-text-muted)] font-medium mb-6 md:mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    <strong class="text-[var(--sendu-text-main)]">Tiara Nur Anisah, S.E., M.M.</strong> adalah dosen muda Universitas Janabadra dengan pengalaman komprehensif sebagai akademisi, peneliti, editor jurnal, dan praktisi <i>digital marketing</i> yang aktif di level nasional maupun internasional.
+                </p>
+                
+                <div class="reveal delay-300 flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start w-full px-4 sm:px-0">
+                    <a href="#about" class="bg-[var(--sendu-text-main)] text-white px-6 sm:px-7 py-2.5 md:py-3 rounded-full text-sm font-semibold shadow-[0_8px_15px_rgba(74,66,64,0.12)] hover:bg-[var(--sendu-outline)] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+                        Kenal Lebih Dekat <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+                    <a href="#research" class="bg-white border border-[var(--sendu-grey)] text-[var(--sendu-text-main)] px-6 sm:px-7 py-2.5 md:py-3 rounded-full text-sm font-semibold hover:border-[var(--sendu-pink)] hover:bg-[var(--sendu-pink-light)] transition-all flex items-center justify-center gap-2 w-full sm:w-auto">
+                        Lihat Karya Ilmiah <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                    </a>
+                </div>
+
+                <!-- Academic Profiles Badges -->
+                <div class="reveal delay-300 mt-6 md:mt-8 flex flex-wrap gap-2 justify-center lg:justify-start items-center">
+                    <span class="text-[10px] md:text-xs font-bold text-[var(--sendu-text-muted)] uppercase tracking-wider w-full lg:w-auto mb-1 lg:mb-0 mr-0 lg:mr-1">Tautan Akademik:</span>
+                    
+                    <a href="https://scholar.google.com/citations?user=FGuMAJgAAAAJ&hl=id" target="_blank" class="academic-badge">
+                        <svg class="w-3.5 h-3.5 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.8 3.8v5.8h2.4v-4l4.8 3.8 12-9.5L12 0z"/></svg> Scholar
+                    </a>
+                    <a href="https://orcid.org/0000-0001-9349-625X" target="_blank" class="academic-badge">
+                        <svg class="w-3.5 h-3.5 text-[#A6CE39]" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-4.7 17.6H4.7V7.1h2.6v10.5zM6 6.1c-.8 0-1.4-.6-1.4-1.4 0-.8.6-1.4 1.4-1.4.8 0 1.4.6 1.4 1.4 0 .8-.6 1.4-1.4 1.4zm12.3 5.3c0 2.9-2 5.1-5.1 5.1h-3.4V7.1h3.4c3.1 0 5.1 2.2 5.1 5.1zm-2.6 0c0-1.8-1.1-2.9-2.7-2.9h-1V14h1c1.6 0 2.7-1.1 2.7-2.9z"/></svg> ORCID
+                    </a>
+                    <a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6853770" target="_blank" class="academic-badge">
+                        <i data-lucide="globe" class="w-3.5 h-3.5 text-purple-500"></i> SINTA
+                    </a>
+                    <a href="https://e-journal.stie-aub.ac.id/index.php/probank/search/authors/view?firstName=Tiara&middleName=Nur&lastName=Anisah&affiliation=Universitas%20Janabadra&country=ID" target="_blank" class="academic-badge">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-emerald-500"></i> AUB
+                    </a>
+                    <a href="https://journal.uii.ac.id/index/search/authors/view?givenName=Tiara%20Nur&familyName=Anisah&affiliation=Faculty%20of%20Economics%20and%20Business%2C%20Janabadra%20University%2C%20Yogyakarta%2C%20Indonesia&country=ID&authorName=Anisah%2C%20Tiara%20Nur" target="_blank" class="academic-badge">
+                        <i data-lucide="book-open" class="w-3.5 h-3.5 text-indigo-500"></i> UII
+                    </a>
+                </div>
+            </div>
+
+            <!-- Area Foto Dosen (Menggunakan Foto Lokal & Presisi) -->
+            <div class="lg:w-1/2 relative flex justify-center w-full mt-4 lg:mt-0 reveal">
+                <div class="relative w-64 h-[20rem] sm:w-72 sm:h-[24rem] md:w-[26rem] md:h-[32rem] lg:w-[28rem] lg:h-[34rem] group mx-auto">
+                    
+                    <div class="absolute inset-0 bg-[var(--sendu-pink-light)] rounded-t-full rounded-b-[3rem] transform translate-x-3 translate-y-3 sm:translate-x-4 sm:translate-y-4 opacity-70 group-hover:translate-x-5 group-hover:translate-y-5 sm:group-hover:translate-x-6 sm:group-hover:translate-y-6 transition-transform duration-700"></div>
+                    
+                    <div class="absolute inset-[-12px] sm:inset-[-16px] border-2 border-dashed border-[var(--sendu-sage)] rounded-t-full rounded-b-[3.5rem] opacity-40 spin-slow-sendu pointer-events-none"></div>
+                    
+                    <div class="absolute inset-0 rounded-t-full rounded-b-[3rem] overflow-hidden border-4 sm:border-[6px] border-white shadow-lg sm:shadow-xl bg-white z-10 anim-float" style="animation-duration: 6s;">
+                        <div class="absolute inset-0 bg-[var(--sendu-pink)] mix-blend-multiply opacity-[0.12] z-20 pointer-events-none group-hover:opacity-0 transition-opacity duration-500"></div>
+                        
+                        <!-- FOTO LOKAL (Pastikan file tiara.jpg satu folder dengan file index.html ini) -->
+                        <img 
+                            src="tiara.jpg" 
+                            alt="Tiara Nur Anisah" 
+                            class="w-full h-full object-cover object-center filter contrast-[1.05] saturate-[0.9] group-hover:scale-105 transition-transform duration-1000"
+                            onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Tiara+Nur+Anisah&background=F1E4E8&color=DAB6C4&size=512';"
+                        />
+                    </div>
+
+                    <div class="absolute top-6 -right-3 sm:top-10 sm:-right-5 bg-white p-2 sm:p-2.5 rounded-xl shadow-md border border-[var(--sendu-pink-light)] z-20 anim-breathe" style="animation-delay: 1s;">
+                         <i data-lucide="star" class="w-4 h-4 sm:w-5 sm:h-5 text-[var(--sendu-pink)] fill-[var(--sendu-pink)]"></i>
+                    </div>
+                    
+                    <!-- Responsive SVG CatHero -->
+                    <div class="absolute -bottom-6 -left-8 sm:-bottom-8 sm:-left-12 w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 z-30 drop-shadow-[0_10px_10px_rgba(0,0,0,0.08)] sm:drop-shadow-[0_15px_15px_rgba(0,0,0,0.1)] group-hover:-translate-y-2 transition-transform duration-500">
+                        <svg class="cat-wrapper w-full h-full" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g class="anim-breathe">
+                                <path class="anim-tail" d="M140 160 Q170 170 165 120" stroke="var(--sendu-outline)" stroke-width="12" stroke-linecap="round" fill="none" />
+                                <path class="anim-tail" d="M140 160 Q170 170 165 120" stroke="var(--sendu-pink)" stroke-width="6" stroke-linecap="round" fill="none" />
+                                <path d="M50 170 C50 100 150 100 150 170 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="4" stroke-linejoin="round" />
+                                <path d="M70 170 C70 130 130 130 130 170 Z" fill="#FFFFFF" />
+                                <circle cx="100" cy="90" r="45" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="4" />
+                                <g class="anim-ear-l">
+                                    <path d="M65 60 L50 25 L85 45 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="4" stroke-linejoin="round" />
+                                    <path d="M62 55 L56 32 L78 45 Z" fill="var(--sendu-pink)" />
+                                </g>
+                                <g class="anim-ear-r">
+                                    <path d="M135 60 L150 25 L115 45 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="4" stroke-linejoin="round" />
+                                    <path d="M138 55 L144 32 L122 45 Z" fill="var(--sendu-pink)" />
+                                </g>
+                                <circle cx="80" cy="85" r="14" stroke="var(--sendu-outline)" stroke-width="3" fill="none" />
+                                <circle cx="120" cy="85" r="14" stroke="var(--sendu-outline)" stroke-width="3" fill="none" />
+                                <path d="M94 85 L106 85" stroke="var(--sendu-outline)" stroke-width="3" />
+                                <g class="anim-blink">
+                                    <circle cx="80" cy="85" r="5" fill="var(--sendu-outline)" />
+                                    <circle cx="82" cy="83" r="2" fill="white" />
+                                    <circle cx="120" cy="85" r="5" fill="var(--sendu-outline)" />
+                                    <circle cx="122" cy="83" r="2" fill="white" />
+                                </g>
+                                <circle cx="60" cy="95" r="5" fill="var(--sendu-pink)" class="hover-blush" opacity="0.6" />
+                                <circle cx="140" cy="95" r="5" fill="var(--sendu-pink)" class="hover-blush" opacity="0.6" />
+                                <path d="M92 98 Q100 105 108 98" stroke="var(--sendu-outline)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                                <rect x="55" y="130" width="90" height="45" rx="4" fill="var(--sendu-sage)" stroke="var(--sendu-outline)" stroke-width="3" />
+                                <rect x="65" y="135" width="70" height="30" rx="2" fill="var(--sendu-sage-light)" />
+                                <circle cx="100" cy="150" r="4" fill="var(--sendu-outline)" opacity="0.2" />
+                                <circle cx="65" cy="135" r="10" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                                <circle cx="135" cy="135" r="10" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 2. ABOUT LECTURER (PROFIL MENTOR) -->
+    <section id="about" class="py-12 md:py-20 px-4 sm:px-6 bg-white relative border-t border-[var(--sendu-beige-dark)]">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div class="md:w-1/2 relative reveal w-full">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[var(--sendu-pink-light)] text-[var(--sendu-text-main)] text-xs md:text-sm font-semibold tracking-wide mb-3 md:mb-4">
+                    <i data-lucide="book-open" class="w-3.5 h-3.5 text-[var(--sendu-outline)]"></i>
+                    Profil Mentor
+                </div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-serif-title font-medium text-[var(--sendu-text-main)] mb-4 md:mb-6 leading-tight">
+                    Menjembatani Teori Akademis <br class="hidden sm:block"/> <span class="italic text-[var(--sendu-text-muted)] font-light">& Praktik Industri Nyata.</span>
+                </h2>
+                <div class="space-y-3 md:space-y-4 text-[var(--sendu-text-muted)] text-sm md:text-base leading-relaxed font-medium">
+                    <p>
+                        <strong class="text-[var(--sendu-text-main)]">Tiara Nur Anisah, S.E., M.M.</strong> merupakan pendidik muda inspiratif di Program Studi Manajemen, Universitas Janabadra. Beliau mendobrak metode belajar tradisional menjadi lebih segar, interaktif, dan relevan dengan gaya belajar masa kini.
+                    </p>
+                    <p>
+                        Fokus riset dan pengajaran beliau menukik tajam pada <strong class="text-[var(--sendu-text-main)]">Pemasaran Digital, Perilaku Konsumen, dan Bisnis Berkelanjutan (Green Marketing)</strong>. Ilmu ini tidak hanya berakhir sebagai jurnal akademis, melainkan dibawa langsung ke ruang kelas sebagai studi kasus dunia nyata.
+                    </p>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center w-full reveal delay-200 mt-6 md:mt-0">
+                <div class="w-full max-w-sm bg-[var(--sendu-beige)] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 relative shadow-sm border border-[var(--sendu-beige-dark)] mx-4 sm:mx-0">
+                    <!-- CatReading SVG -->
+                    <svg class="cat-wrapper w-full h-full anim-float" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g class="anim-breathe">
+                            <path d="M30 130 C30 80 120 80 120 130 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                            <circle cx="100" cy="110" r="20" fill="var(--sendu-pink)" opacity="0.3" /> 
+                            <circle cx="75" cy="65" r="35" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                            <path d="M45 45 L35 15 L65 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                            <path d="M105 45 L115 15 L85 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                            <path d="M55 60 Q60 65 65 60" stroke="var(--sendu-outline)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                            <path d="M85 60 Q90 65 95 60" stroke="var(--sendu-outline)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                            <circle cx="50" cy="68" r="4" fill="var(--sendu-pink)" class="hover-blush" opacity="0.6" />
+                            <circle cx="100" cy="68" r="4" fill="var(--sendu-pink)" class="hover-blush" opacity="0.6" />
+                            <path d="M30 100 L75 115 L120 100 L120 140 L75 155 L30 140 Z" fill="var(--sendu-beige)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                            <path d="M75 115 V155" stroke="var(--sendu-outline)" stroke-width="3" />
+                            <path d="M45 112 L65 118" stroke="var(--sendu-grey)" stroke-width="2" stroke-linecap="round" />
+                            <path d="M85 118 L105 112" stroke="var(--sendu-grey)" stroke-width="2" stroke-linecap="round" />
+                            <circle cx="50" cy="102" r="7" fill="white" stroke="var(--sendu-outline)" stroke-width="2" />
+                            <circle cx="100" cy="102" r="7" fill="white" stroke="var(--sendu-outline)" stroke-width="2" />
+                        </g>
+                    </svg>
+
+                    <div class="absolute -bottom-3 -left-3 md:-bottom-5 md:-left-5 bg-white px-3 md:px-4 py-2 md:py-2.5 rounded-xl shadow-md border border-[var(--sendu-pink-light)] anim-breathe">
+                         <p class="text-xs font-bold text-[var(--sendu-pink)] flex items-center gap-1.5">
+                           <i data-lucide="star" class="w-3 h-3 fill-[var(--sendu-pink)]"></i> Educator Inspiratif
+                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. KEY METRICS (DATA VISUAL) -->
+    <section id="metrics" class="py-12 md:py-16 px-4 sm:px-6 relative z-20 bg-[var(--sendu-beige)]">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
+                
+                <!-- Metric 1 -->
+                <div class="glass-sendu p-5 md:p-6 rounded-2xl relative overflow-hidden group reveal delay-0">
+                    <div class="absolute -right-4 -bottom-4 md:-right-6 md:-bottom-6 w-20 h-20 md:w-28 md:h-28 opacity-5 group-hover:opacity-[0.08] group-hover:scale-110 transition-all duration-500 pointer-events-none">
+                        <!-- Reuse CatReading SVG -->
+                        <svg class="cat-wrapper w-full h-full grayscale" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g class="anim-breathe">
+                                <path d="M30 130 C30 80 120 80 120 130 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <circle cx="75" cy="65" r="35" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                                <path d="M45 45 L35 15 L65 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <path d="M105 45 L115 15 L85 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <path d="M55 60 Q60 65 65 60" stroke="var(--sendu-outline)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                                <path d="M85 60 Q90 65 95 60" stroke="var(--sendu-outline)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-sm mb-3 md:mb-5 border border-[var(--sendu-beige-dark)]">
+                        <i data-lucide="file-text" class="w-5 h-5 md:w-6 md:h-6 text-[var(--sendu-pink)]"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-serif-title font-semibold text-[var(--sendu-text-main)] mb-1">25+</h3>
+                    <p class="text-[var(--sendu-text-muted)] font-medium text-[10px] md:text-xs uppercase tracking-wide leading-tight">Publikasi Ilmiah</p>
+                </div>
+
+                <!-- Metric 2 -->
+                <div class="glass-sendu p-5 md:p-6 rounded-2xl relative overflow-hidden group reveal delay-100">
+                    <div class="absolute -right-4 -bottom-4 md:-right-6 md:-bottom-6 w-20 h-20 md:w-28 md:h-28 opacity-5 group-hover:opacity-[0.08] group-hover:scale-110 transition-all duration-500 pointer-events-none">
+                        <!-- Reuse CatCelebrating SVG -->
+                        <svg class="cat-wrapper w-full h-full grayscale" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g class="anim-breathe" style="animation-duration: 2.5s;">
+                                <path d="M40 130 C40 80 110 80 110 130 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <circle cx="75" cy="70" r="35" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                                <path d="M45 45 L35 15 L65 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <path d="M105 45 L115 15 L85 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-sm mb-3 md:mb-5 border border-[var(--sendu-beige-dark)]">
+                        <i data-lucide="award" class="w-5 h-5 md:w-6 md:h-6 text-[var(--sendu-pink)]"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-serif-title font-semibold text-[var(--sendu-text-main)] mb-1">7</h3>
+                    <p class="text-[var(--sendu-text-muted)] font-medium text-[10px] md:text-xs uppercase tracking-wide leading-tight">Publikasi Scopus</p>
+                </div>
+
+                <!-- Metric 3 -->
+                <div class="glass-sendu p-5 md:p-6 rounded-2xl relative overflow-hidden group reveal delay-200">
+                    <div class="absolute -right-4 -bottom-4 md:-right-6 md:-bottom-6 w-20 h-20 md:w-28 md:h-28 opacity-5 group-hover:opacity-[0.08] group-hover:scale-110 transition-all duration-500 pointer-events-none">
+                        <!-- Reuse CatPointing SVG -->
+                        <svg class="cat-wrapper w-full h-full grayscale" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g class="anim-breathe">
+                                <path d="M40 140 C40 90 100 90 100 140 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <circle cx="70" cy="70" r="32" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                                <path d="M45 48 L35 20 L60 40 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <path d="M95 48 L105 20 L80 40 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-sm mb-3 md:mb-5 border border-[var(--sendu-beige-dark)]">
+                        <i data-lucide="trending-up" class="w-5 h-5 md:w-6 md:h-6 text-[var(--sendu-pink)]"></i>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-serif-title font-semibold text-[var(--sendu-text-main)] mb-1">120+</h3>
+                    <p class="text-[var(--sendu-text-muted)] font-medium text-[10px] md:text-xs uppercase tracking-wide leading-tight">Total Sitasi</p>
+                </div>
+
+                <!-- Metric 4 -->
+                <div class="glass-sendu p-5 md:p-6 rounded-2xl relative overflow-hidden group reveal delay-300">
+                    <div class="absolute -right-4 -bottom-4 md:-right-6 md:-bottom-6 w-20 h-20 md:w-28 md:h-28 opacity-5 group-hover:opacity-[0.08] group-hover:scale-110 transition-all duration-500 pointer-events-none">
+                        <!-- Reuse CatHero SVG -->
+                        <svg class="cat-wrapper w-full h-full grayscale" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g class="anim-breathe">
+                                <path d="M50 170 C50 100 150 100 150 170 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="4" stroke-linejoin="round" />
+                                <circle cx="100" cy="90" r="45" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="4" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-xl flex items-center justify-center shadow-sm mb-3 md:mb-5 border border-[var(--sendu-beige-dark)]">
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-[var(--sendu-pink)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="12" y1="20" x2="12" y2="10" />
+                            <line x1="18" y1="20" x2="18" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="16" />
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl md:text-3xl font-serif-title font-semibold text-[var(--sendu-text-main)] mb-1">6-7</h3>
+                    <p class="text-[var(--sendu-text-muted)] font-medium text-[10px] md:text-xs uppercase tracking-wide leading-tight">H-Index</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. RESEARCH FOCUS (DATA PUBLIKASI) -->
+    <section id="research" class="py-12 md:py-20 px-4 sm:px-6 bg-white relative overflow-hidden border-b border-[var(--sendu-beige-dark)]">
+        <div class="absolute -right-10 top-10 opacity-5 w-[250px] h-[250px] md:w-[350px] md:h-[350px] pointer-events-none hidden sm:block">
+            <svg class="cat-wrapper w-full h-full" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 130 C30 80 120 80 120 130 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                <circle cx="75" cy="65" r="35" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+            </svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section Title -->
+            <div class="text-center mb-8 md:mb-12 reveal px-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--sendu-pink-light)] text-[var(--sendu-text-main)] text-xs md:text-sm font-semibold tracking-wide mb-3">
+                    <i data-lucide="book-open" class="w-4 h-4 text-[var(--sendu-outline)]"></i>
+                    Research & Publications
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-title font-medium text-[var(--sendu-text-main)] leading-tight">
+                    Daftar Publikasi Riset
+                </h2>
+            </div>
+
+            <div class="flex flex-col gap-3 md:gap-4">
+                
+                <!-- Publication 1 -->
+                <div class="glass-sendu p-4 sm:p-5 md:p-6 rounded-2xl flex flex-col md:flex-row gap-4 items-start md:items-center group reveal delay-0 border border-[var(--sendu-beige-dark)] hover:border-[var(--sendu-pink-light)]">
+                    <div class="bg-[var(--sendu-sage-light)] text-[var(--sendu-sage)] w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center shrink-0 font-black text-sm sm:text-base md:text-lg shadow-inner border border-white">
+                        2026
+                    </div>
+                    <div class="flex-grow w-full">
+                        <h4 class="text-base sm:text-lg font-bold text-[var(--sendu-text-main)] mb-2 group-hover:text-[var(--sendu-outline)] transition-colors leading-snug">
+                            Sustainable Marketing Strategies in TikTok Shop: A Gen Z Perspective
+                        </h4>
+                        <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 text-[10px] sm:text-xs font-semibold">
+                            <span class="bg-[var(--sendu-pink-light)] text-[var(--sendu-pink)] px-2.5 sm:px-3 py-1 rounded-full border border-[var(--sendu-pink)]/20 shadow-sm whitespace-nowrap">
+                                Peran: Penulis Utama
+                            </span>
+                            <span class="text-[var(--sendu-text-muted)] flex items-center gap-1 bg-[var(--sendu-beige)] px-2.5 sm:px-3 py-1 rounded-full border border-[var(--sendu-beige-dark)] shadow-sm">
+                                <i data-lucide="book-open" class="w-3 h-3 shrink-0"></i> <span class="truncate max-w-[150px] sm:max-w-none">Int. Journal of Electronic Commerce</span>
+                            </span>
+                            <span class="flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full border shadow-sm whitespace-nowrap bg-[#EAF0F4] text-[#5C7E8F] border-[#C3D4DB]">
+                                <i data-lucide="globe" class="w-3 h-3"></i> Scopus Q1
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#link-jurnal" class="hidden lg:flex shrink-0 w-10 h-10 rounded-full border border-[var(--sendu-beige-dark)] items-center justify-center text-[var(--sendu-text-muted)] group-hover:bg-[var(--sendu-pink)] group-hover:border-[var(--sendu-pink)] group-hover:text-white transition-all transform group-hover:scale-110">
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Publication 2 -->
+                <div class="glass-sendu p-4 sm:p-5 md:p-6 rounded-2xl flex flex-col md:flex-row gap-4 items-start md:items-center group reveal delay-100 border border-[var(--sendu-beige-dark)] hover:border-[var(--sendu-pink-light)]">
+                    <div class="bg-[var(--sendu-sage-light)] text-[var(--sendu-sage)] w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center shrink-0 font-black text-sm sm:text-base md:text-lg shadow-inner border border-white">
+                        2025
+                    </div>
+                    <div class="flex-grow w-full">
+                        <h4 class="text-base sm:text-lg font-bold text-[var(--sendu-text-main)] mb-2 group-hover:text-[var(--sendu-outline)] transition-colors leading-snug">
+                            Peran AI dalam Personalisasi Pengalaman Konsumen E-Commerce Indonesia
+                        </h4>
+                        <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 text-[10px] sm:text-xs font-semibold">
+                            <span class="bg-[var(--sendu-pink-light)] text-[var(--sendu-pink)] px-2.5 sm:px-3 py-1 rounded-full border border-[var(--sendu-pink)]/20 shadow-sm whitespace-nowrap">
+                                Peran: Ketua Peneliti
+                            </span>
+                            <span class="text-[var(--sendu-text-muted)] flex items-center gap-1 bg-[var(--sendu-beige)] px-2.5 sm:px-3 py-1 rounded-full border border-[var(--sendu-beige-dark)] shadow-sm">
+                                <i data-lucide="book-open" class="w-3 h-3 shrink-0"></i> <span class="truncate max-w-[150px] sm:max-w-none">Jurnal Manajemen Teknologi</span>
+                            </span>
+                            <span class="flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full border shadow-sm whitespace-nowrap bg-[#F2F4EB] text-[#6B8572] border-[#C9D6CE]">
+                                <i data-lucide="map-pin" class="w-3 h-3"></i> SINTA 2
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#link-jurnal" class="hidden lg:flex shrink-0 w-10 h-10 rounded-full border border-[var(--sendu-beige-dark)] items-center justify-center text-[var(--sendu-text-muted)] group-hover:bg-[var(--sendu-pink)] group-hover:border-[var(--sendu-pink)] group-hover:text-white transition-all transform group-hover:scale-110">
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Publication 3 -->
+                <div class="glass-sendu p-4 sm:p-5 md:p-6 rounded-2xl flex flex-col md:flex-row gap-4 items-start md:items-center group reveal delay-200 border border-[var(--sendu-beige-dark)] hover:border-[var(--sendu-pink-light)]">
+                    <div class="bg-[var(--sendu-sage-light)] text-[var(--sendu-sage)] w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center shrink-0 font-black text-sm sm:text-base md:text-lg shadow-inner border border-white">
+                        2024
+                    </div>
+                    <div class="flex-grow w-full">
+                        <h4 class="text-base sm:text-lg font-bold text-[var(--sendu-text-main)] mb-2 group-hover:text-[var(--sendu-outline)] transition-colors leading-snug">
+                            Impulsive Behavior in Live Commerce: Analisis Perilaku Belanja Gen Z di Era Digital
+                        </h4>
+                        <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 text-[10px] sm:text-xs font-semibold">
+                            <span class="bg-[var(--sendu-pink-light)] text-[var(--sendu-pink)] px-2.5 sm:px-3 py-1 rounded-full border border-[var(--sendu-pink)]/20 shadow-sm whitespace-nowrap">
+                                Peran: Penulis Utama
+                            </span>
+                            <span class="text-[var(--sendu-text-muted)] flex items-center gap-1 bg-[var(--sendu-beige)] px-2.5 sm:px-3 py-1 rounded-full border border-[var(--sendu-beige-dark)] shadow-sm">
+                                <i data-lucide="book-open" class="w-3 h-3 shrink-0"></i> <span class="truncate max-w-[150px] sm:max-w-none">Journal of Digital Mkt & Behavior</span>
+                            </span>
+                            <span class="flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full border shadow-sm whitespace-nowrap bg-[#EAF0F4] text-[#5C7E8F] border-[#C3D4DB]">
+                                <i data-lucide="globe" class="w-3 h-3"></i> Scopus Q3
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#link-jurnal" class="hidden lg:flex shrink-0 w-10 h-10 rounded-full border border-[var(--sendu-beige-dark)] items-center justify-center text-[var(--sendu-text-muted)] group-hover:bg-[var(--sendu-pink)] group-hover:border-[var(--sendu-pink)] group-hover:text-white transition-all transform group-hover:scale-110">
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Publication 4 -->
+                <div class="glass-sendu p-4 sm:p-5 md:p-6 rounded-2xl flex flex-col md:flex-row gap-4 items-start md:items-center group reveal delay-0 border border-[var(--sendu-beige-dark)] hover:border-[var(--sendu-pink-light)]">
+                    <div class="bg-[var(--sendu-sage-light)] text-[var(--sendu-sage)] w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center shrink-0 font-black text-sm sm:text-base md:text-lg shadow-inner border border-white">
+                        2023
+                    </div>
+                    <div class="flex-grow w-full">
+                        <h4 class="text-base sm:text-lg font-bold text-[var(--sendu-text-main)] mb-2 group-hover:text-[var(--sendu-outline)] transition-colors leading-snug">
+                            Green Consumer Behavior: Niat Beli Produk Berkelanjutan di Industri Fast Fashion
+                        </h4>
+                        <div class="flex flex-wrap items-center gap-2 sm:gap-2.5 text-[10px] sm:text-xs font-semibold">
+                            <span class="bg-[var(--sendu-pink-light)] text-[var(--sendu-pink)] px-2.5 sm:px-3 py-1 rounded-full border border-[var(--sendu-pink)]/20 shadow-sm whitespace-nowrap">
+                                Peran: Ketua Peneliti
+                            </span>
+                            <span class="text-[var(--sendu-text-muted)] flex items-center gap-1 bg-[var(--sendu-beige)] px-2.5 sm:px-3 py-1 rounded-full border border-[var(--sendu-beige-dark)] shadow-sm">
+                                <i data-lucide="book-open" class="w-3 h-3 shrink-0"></i> <span class="truncate max-w-[150px] sm:max-w-none">Int. Journal of Sustainability</span>
+                            </span>
+                            <span class="flex items-center gap-1 px-2.5 sm:px-3 py-1 rounded-full border shadow-sm whitespace-nowrap bg-[#EAF0F4] text-[#5C7E8F] border-[#C3D4DB]">
+                                <i data-lucide="globe" class="w-3 h-3"></i> Scopus Q2
+                            </span>
+                        </div>
+                    </div>
+                    <a href="#link-jurnal" class="hidden lg:flex shrink-0 w-10 h-10 rounded-full border border-[var(--sendu-beige-dark)] items-center justify-center text-[var(--sendu-text-muted)] group-hover:bg-[var(--sendu-pink)] group-hover:border-[var(--sendu-pink)] group-hover:text-white transition-all transform group-hover:scale-110">
+                        <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. BOOK PUBLICATION (ETALASE BUKU) -->
+    <section id="books" class="py-12 md:py-20 px-4 sm:px-6 bg-[var(--sendu-pink-light)]/40 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[200px] h-[200px] md:w-[350px] md:h-[350px] bg-[var(--sendu-pink-light)] rounded-full blur-[60px] md:blur-[80px] -z-10"></div>
+        <div class="max-w-5xl mx-auto relative z-10">
+            <!-- Section Title -->
+            <div class="text-center mb-8 md:mb-12 reveal px-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--sendu-pink-light)] text-[var(--sendu-text-main)] text-xs md:text-sm font-semibold tracking-wide mb-3">
+                    <i data-lucide="shopping-cart" class="w-4 h-4 text-[var(--sendu-outline)]"></i>
+                    Books
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-title font-medium text-[var(--sendu-text-main)] leading-tight">
+                    Karya & Publikasi Buku
+                </h2>
+            </div>
+
+            <div class="glass-sendu rounded-[2rem] p-6 sm:p-8 md:p-10 flex flex-col lg:flex-row items-center gap-8 md:gap-10 border border-white reveal">
+                <!-- Book Image -->
+                <div class="w-full lg:w-1/3 flex justify-center relative pt-2 lg:pt-0">
+                    <div class="w-40 h-56 sm:w-48 sm:h-64 bg-white rounded-r-xl rounded-l-sm shadow-[10px_10px_20px_rgba(74,66,64,0.1)] border border-[var(--sendu-beige-dark)] transform -rotate-2 hover:rotate-0 transition-transform duration-500 overflow-hidden relative mx-auto">
+                        <div class="absolute inset-0 bg-gradient-to-br from-[var(--sendu-sage)] to-[var(--sendu-outline)] opacity-5"></div>
+                        <div class="p-4 sm:p-5 h-full flex flex-col text-left">
+                             <div class="text-[9px] sm:text-[10px] text-[var(--sendu-text-muted)] font-bold mb-1 sm:mb-2 uppercase tracking-widest text-center border-b border-[var(--sendu-beige-dark)] pb-1.5">Deepublish</div>
+                             <h3 class="font-serif-title text-sm sm:text-base md:text-lg font-bold text-[var(--sendu-text-main)] leading-tight mb-2 sm:mb-2.5 mt-2 sm:mt-3 text-center">
+                                 Dari Ide ke Artikel Ilmiah:
+                             </h3>
+                             <p class="text-[9px] sm:text-[10px] text-[var(--sendu-text-muted)] text-center leading-relaxed font-semibold">
+                                 Panduan Menyusun Artikel yang Siap Submit ke Scopus & SINTA
+                             </p>
+                             <div class="mt-auto pt-2 sm:pt-3 border-t border-[var(--sendu-beige-dark)] flex flex-col items-center">
+                                 <p class="text-[8px] sm:text-[9px] font-bold uppercase tracking-wider text-[var(--sendu-outline)] mb-1">Penulis:</p>
+                                 <p class="text-[9px] sm:text-[10px] font-semibold text-center leading-tight">Andika, Bambang, Titi, Maslikhah, <span class="font-bold text-[var(--sendu-text-main)] block mt-0.5">Tiara Nur Anisah</span></p>
+                             </div>
+                        </div>
+                        <div class="absolute top-0 left-0 w-3 h-full bg-black/5 shadow-inner"></div>
+                    </div>
+                    <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-20 h-20 sm:w-28 sm:h-28 z-10 anim-breathe hidden sm:block">
+                        <svg class="cat-wrapper w-full h-full drop-shadow-lg" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30 130 C30 80 120 80 120 130 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                            <circle cx="75" cy="65" r="35" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                            <path d="M45 45 L35 15 L65 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                            <path d="M105 45 L115 15 L85 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Book Info & Purchase -->
+                <div class="w-full lg:w-2/3 text-center lg:text-left">
+                    <div class="inline-block bg-white text-[var(--sendu-pink)] text-[10px] sm:text-xs font-bold px-3 py-1 rounded-full border border-[var(--sendu-pink-light)] mb-3">Buku Ajar / Referensi</div>
+                    <h3 class="text-xl sm:text-2xl font-serif-title font-bold text-[var(--sendu-text-main)] mb-3 leading-snug">
+                        Dari Ide ke Artikel Ilmiah: Panduan Menyusun Artikel yang Siap Submit ke Scopus & SINTA
+                    </h3>
+                    <p class="text-xs sm:text-sm text-[var(--sendu-text-muted)] font-medium leading-relaxed mb-6">
+                        Buku kolaborasi ini merupakan panduan praktis dan komprehensif bagi dosen, peneliti, dan mahasiswa untuk merumuskan ide brilian menjadi sebuah artikel ilmiah yang memenuhi standar publikasi internasional (Scopus) maupun nasional (SINTA).
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center bg-white/60 p-3 sm:p-4 rounded-xl border border-white mx-auto lg:mx-0 max-w-sm lg:max-w-none">
+                        <div class="text-center sm:text-left border-b sm:border-b-0 sm:border-r border-[var(--sendu-beige-dark)] pb-2 sm:pb-0 sm:pr-4 w-full sm:w-auto">
+                            <p class="text-[9px] sm:text-[10px] text-[var(--sendu-text-muted)] font-bold uppercase tracking-wider mb-0.5">Harga Resmi</p>
+                            <p class="text-lg sm:text-xl font-black text-[var(--sendu-outline)]">Rp 283.000</p>
+                        </div>
+                        <a href="https://deepublishstore.com/authors/tiara-nur-anisah/" target="_blank" class="bg-[var(--sendu-outline)] text-white hover:bg-[var(--sendu-text-main)] px-6 py-2.5 rounded-full font-bold shadow-md hover:-translate-y-1 transition-all flex items-center justify-center gap-2 w-full sm:w-auto text-xs sm:text-sm">
+                            <i data-lucide="shopping-cart" class="w-4 h-4"></i> Beli di Deepublish
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TEACHING SECTION -->
+    <section id="teaching" class="py-12 md:py-20 px-4 sm:px-6 bg-white relative border-t border-[var(--sendu-beige-dark)]">
+        <div class="max-w-5xl mx-auto">
+            <!-- Section Title -->
+            <div class="text-center mb-8 md:mb-12 reveal px-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--sendu-pink-light)] text-[var(--sendu-text-main)] text-xs md:text-sm font-semibold tracking-wide mb-3">
+                    <i data-lucide="graduation-cap" class="w-4 h-4 text-[var(--sendu-outline)]"></i>
+                    Teaching
+                </div>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif-title font-medium text-[var(--sendu-text-main)] leading-tight">
+                    Mata Kuliah Utama
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-5">
+                
+                <div class="glass-sendu p-5 md:p-6 text-center rounded-2xl group reveal delay-0">
+                    <div class="w-10 h-10 md:w-14 md:h-14 mx-auto bg-[var(--sendu-sage-light)] rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="trending-up" class="w-5 h-5 md:w-6 md:h-6 text-[var(--sendu-sage)]"></i>
+                    </div>
+                    <h4 class="text-sm md:text-base font-bold text-[var(--sendu-text-main)] leading-tight">Manajemen Pemasaran</h4>
+                </div>
+
+                <div class="glass-sendu p-5 md:p-6 text-center rounded-2xl group reveal delay-100">
+                    <div class="w-10 h-10 md:w-14 md:h-14 mx-auto bg-[var(--sendu-sage-light)] rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                        <!-- Custom Users Icon -->
+                        <svg class="w-5 h-5 md:w-6 md:h-6 text-[var(--sendu-sage)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <h4 class="text-sm md:text-base font-bold text-[var(--sendu-text-main)] leading-tight">Perilaku Konsumen</h4>
+                </div>
+
+                <div class="glass-sendu p-5 md:p-6 text-center rounded-2xl group reveal delay-200">
+                    <div class="w-10 h-10 md:w-14 md:h-14 mx-auto bg-[var(--sendu-sage-light)] rounded-full flex items-center justify-center mb-3 md:mb-4 group-hover:scale-110 transition-transform">
+                        <i data-lucide="file-text" class="w-5 h-5 md:w-6 md:h-6 text-[var(--sendu-sage)]"></i>
+                    </div>
+                    <h4 class="text-sm md:text-base font-bold text-[var(--sendu-text-main)] leading-tight">Penulisan Ilmiah</h4>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & SOCIAL MEDIA -->
+    <footer id="contact" class="pt-12 pb-6 bg-[var(--sendu-beige)] border-t border-[var(--sendu-beige-dark)] relative overflow-hidden">
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-[var(--sendu-pink-light)] rounded-full blur-[80px] opacity-40 pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-6 mb-10">
+                
+                <!-- Column 1: Branding & Cat -->
+                <div class="md:col-span-5 flex flex-col items-center md:items-start text-center md:text-left reveal">
+                    <div class="w-20 h-20 md:w-28 md:h-28 mb-3 relative">
+                         <div class="absolute inset-0 bg-white/50 rounded-full blur-lg"></div>
+                         <svg class="cat-wrapper w-full h-full drop-shadow-sm relative z-10" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g class="anim-breathe" style="animation-duration: 2.5s;">
+                                <!-- Star sparkles -->
+                                <path d="M20 50 L23 58 L31 61 L23 64 L20 72 L17 64 L9 61 L17 58 Z" fill="var(--sendu-sage)" opacity="0.6" class="anim-float" />
+                                <path d="M125 30 L128 38 L136 41 L128 44 L125 52 L122 44 L114 41 L122 38 Z" fill="var(--sendu-pink)" opacity="0.8" class="anim-float" style="animation-delay: 1s;" />
+                                <!-- Cat Body -->
+                                <path d="M40 130 C40 80 110 80 110 130 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <circle cx="75" cy="70" r="35" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                                <path d="M45 45 L35 15 L65 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <path d="M105 45 L115 15 L85 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                <!-- Cat Face -->
+                                <path d="M55 60 Q60 65 65 60" stroke="var(--sendu-outline)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                                <path d="M85 60 Q90 65 95 60" stroke="var(--sendu-outline)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                                <circle cx="50" cy="68" r="4" fill="var(--sendu-pink)" class="hover-blush" opacity="0.6" />
+                                <circle cx="100" cy="68" r="4" fill="var(--sendu-pink)" class="hover-blush" opacity="0.6" />
+                                <path d="M68 75 Q75 88 82 75 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="2" stroke-linejoin="round" />
+                                <!-- Happy Arms -->
+                                <g class="anim-float" style="animation-duration: 1.5s;">
+                                    <path d="M50 100 Q40 70 30 50" stroke="var(--sendu-outline)" stroke-width="14" stroke-linecap="round" fill="none" />
+                                    <path d="M50 100 Q40 70 30 50" stroke="url(#catBodyGrad)" stroke-width="8" stroke-linecap="round" fill="none" />
+                                    <circle cx="30" cy="50" r="4" fill="var(--sendu-pink)" />
+                                    <path d="M100 100 Q110 70 120 50" stroke="var(--sendu-outline)" stroke-width="14" stroke-linecap="round" fill="none" />
+                                    <path d="M100 100 Q110 70 120 50" stroke="url(#catBodyGrad)" stroke-width="8" stroke-linecap="round" fill="none" />
+                                    <circle cx="120" cy="50" r="4" fill="var(--sendu-pink)" />
+                                </g>
+                            </g>
+                         </svg>
+                    </div>
+                    <h3 class="font-serif-title text-xl font-bold text-[var(--sendu-text-main)] mb-2">Tiara Nur Anisah.</h3>
+                    <p class="text-[var(--sendu-text-muted)] text-xs md:text-sm font-medium max-w-xs leading-relaxed">
+                        Menjembatani teori akademis dan praktik bisnis modern untuk mencetak generasi pemimpin yang cerdas, adaptif, dan peduli lingkungan.
+                    </p>
+                </div>
+
+                <!-- Column 2: Tautan Akademik -->
+                <div class="md:col-span-4 flex flex-col items-center md:items-start reveal delay-100">
+                    <h4 class="font-bold text-[var(--sendu-text-main)] mb-4 uppercase tracking-wider text-xs">Tautan Akademik</h4>
+                    <div class="flex flex-col gap-3 text-xs sm:text-sm font-semibold text-[var(--sendu-text-muted)]">
+                        <a href="https://scholar.google.com/citations?user=FGuMAJgAAAAJ&hl=id" target="_blank" class="hover:text-[var(--sendu-pink)] transition-colors flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14zm0-24L0 9.5l4.8 3.8v5.8h2.4v-4l4.8 3.8 12-9.5L12 0z"/></svg> Google Scholar
+                        </a>
+                        <a href="https://orcid.org/0000-0001-9349-625X" target="_blank" class="hover:text-[var(--sendu-pink)] transition-colors flex items-center gap-2">
+                            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm-4.7 17.6H4.7V7.1h2.6v10.5zM6 6.1c-.8 0-1.4-.6-1.4-1.4 0-.8.6-1.4 1.4-1.4.8 0 1.4.6 1.4 1.4 0 .8-.6 1.4-1.4 1.4zm12.3 5.3c0 2.9-2 5.1-5.1 5.1h-3.4V7.1h3.4c3.1 0 5.1 2.2 5.1 5.1zm-2.6 0c0-1.8-1.1-2.9-2.7-2.9h-1V14h1c1.6 0 2.7-1.1 2.7-2.9z"/></svg> ORCID
+                        </a>
+                        <a href="https://sinta.kemdiktisaintek.go.id/authors/profile/6853770" target="_blank" class="hover:text-[var(--sendu-pink)] transition-colors flex items-center gap-2">
+                            <i data-lucide="globe" class="w-3.5 h-3.5 shrink-0"></i> SINTA
+                        </a>
+                        <a href="https://e-journal.stie-aub.ac.id/index.php/probank/search/authors/view?firstName=Tiara&middleName=Nur&lastName=Anisah&affiliation=Universitas%20Janabadra&country=ID" target="_blank" class="hover:text-[var(--sendu-pink)] transition-colors flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-3.5 h-3.5 shrink-0"></i> E-Jurnal AUB
+                        </a>
+                        <a href="https://journal.uii.ac.id/index/search/authors/view?givenName=Tiara%20Nur&familyName=Anisah&affiliation=Faculty%20of%20Economics%20and%20Business%2C%20Janabadra%20University%2C%20Yogyakarta%2C%20Indonesia&country=ID&authorName=Anisah%2C%20Tiara%20Nur" target="_blank" class="hover:text-[var(--sendu-pink)] transition-colors flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-3.5 h-3.5 shrink-0"></i> E-Jurnal UII
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 3: Media Sosial -->
+                <div class="md:col-span-3 flex flex-col items-center md:items-start reveal delay-200">
+                    <h4 class="font-bold text-[var(--sendu-text-main)] mb-4 uppercase tracking-wider text-xs">Media Sosial & Kontak</h4>
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2.5">
+                        <!-- LinkedIn -->
+                        <a href="https://id.linkedin.com/in/tiara-nur-anisah-997156376" target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-[#0A66C2] hover:border-[#0A66C2] transition-all transform hover:-translate-y-1 shadow-sm" title="LinkedIn">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/tiaranuranisah/" target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-[#E1306C] hover:border-[#E1306C] transition-all transform hover:-translate-y-1 shadow-sm" title="Instagram">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <!-- WhatsApp API -->
+                        <a href="https://api.whatsapp.com/send?phone=6287706429691&text=Halo%20Ibu%20Tiara,%20saya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut." target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-[#25D366] hover:border-[#25D366] transition-all transform hover:-translate-y-1 shadow-sm" title="WhatsApp">
+                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        </a>
+                        <!-- Twitter / X -->
+                        <a href="https://twitter.com/username" target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-black hover:border-black transition-all transform hover:-translate-y-1 shadow-sm" title="X / Twitter">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                        </a>
+                        <!-- TikTok -->
+                        <a href="https://tiktok.com/@username" target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-black hover:border-black transition-all transform hover:-translate-y-1 shadow-sm" title="TikTok">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div class="border-t border-[var(--sendu-beige-dark)] pt-5 flex flex-col md:flex-row justify-between items-center gap-2 reveal delay-300">
+                <p class="text-[var(--sendu-text-muted)] text-[10px] md:text-xs font-semibold tracking-wide flex items-center gap-1.5 text-center md:text-left">
+                    &copy; 2026 Tiara Nur Anisah. <i data-lucide="leaf" class="w-3 h-3 text-[var(--sendu-sage)] shrink-0"></i> Academic Portfolio.
+                </p>
+                <p class="text-[var(--sendu-text-muted)] text-[10px] text-center md:text-right">Universitas Janabadra, Yogyakarta</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // 1. Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 2. Mobile Menu Toggle Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const iconMenu = document.getElementById('icon-menu');
+        const iconClose = document.getElementById('icon-close');
+        let isMenuOpen = false;
+
+        btn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                menu.classList.remove('max-h-0', 'opacity-0', 'py-0');
+                menu.classList.add('max-h-80', 'opacity-100', 'py-3');
+                iconMenu.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            } else {
+                menu.classList.add('max-h-0', 'opacity-0', 'py-0');
+                menu.classList.remove('max-h-80', 'opacity-100', 'py-3');
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                isMenuOpen = false;
+                menu.classList.add('max-h-0', 'opacity-0', 'py-0');
+                menu.classList.remove('max-h-80', 'opacity-100', 'py-3');
+                iconMenu.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+            });
+        });
+
+        // 3. Scroll Reveal Animation Logic (Intersection Observer)
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
