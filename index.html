@@ -81,9 +81,15 @@
             6% { transform: rotate(4deg); }
             9% { transform: rotate(0deg); }
         }
-        @keyframes pawPoint {
-            0%, 100% { transform: rotate(0deg) translateX(0); }
-            50% { transform: rotate(-15deg) translateX(-5px); }
+
+        /* Animasi Pesawat Kertas Terbang */
+        @keyframes paperPlaneFly {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(4px, -4px) rotate(10deg); }
+        }
+        .anim-paper-plane:hover i {
+            animation: paperPlaneFly 1.2s infinite ease-in-out;
+            color: var(--sendu-pink-light);
         }
 
         /* Animasi Rotasi Cincin Dekoratif */
@@ -98,7 +104,6 @@
         .anim-float { animation: floatSendu 5s infinite; }
         .anim-ear-l { animation: earTwitch 8s infinite; transform-origin: bottom right; transform-box: fill-box; }
         .anim-ear-r { animation: earTwitch 8s infinite; transform-origin: bottom left; transform-box: fill-box; animation-delay: 0.2s; }
-        .anim-paw { animation: pawPoint 2.5s infinite ease-in-out; transform-origin: top right; transform-box: fill-box; }
         .spin-slow-sendu { animation: spinSlowSendu 25s linear infinite; transform-origin: center; }
 
         .cat-wrapper:hover .anim-breathe { animation-duration: 2s; }
@@ -178,8 +183,8 @@
             </div>
             
             <!-- Contact Button Desktop -->
-            <a href="https://api.whatsapp.com/send?phone=6287706429691&text=Halo%20Ibu%20Tiara,%20saya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut." target="_blank" class="hidden md:flex bg-[var(--sendu-outline)] text-white hover:bg-[var(--sendu-text-main)] px-5 py-2 rounded-full text-xs font-semibold transition-all shadow-sm">
-                Hubungi Beliau
+            <a href="mailto:emailanda@domain.com?subject=Permintaan%20Diskusi%20/%20Konsultasi&body=Halo%20Ibu%20Tiara,%0D%0A%0D%0ASaya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut%20mengenai...%0D%0A%0D%0ATerima%20kasih." class="hidden md:flex bg-[var(--sendu-outline)] text-white hover:bg-[var(--sendu-text-main)] px-5 py-2 rounded-full text-xs font-semibold transition-all shadow-sm anim-paper-plane items-center gap-1.5 group">
+                Hubungi Beliau <i data-lucide="send" class="w-3.5 h-3.5 transition-colors"></i>
             </a>
 
             <!-- Hamburger Menu Icon for Mobile -->
@@ -196,8 +201,8 @@
                 <a href="#research" class="mobile-link hover:text-[var(--sendu-pink)] py-1.5 border-b border-[var(--sendu-beige-dark)]">Riset</a>
                 <a href="#books" class="mobile-link hover:text-[var(--sendu-pink)] py-1.5 border-b border-[var(--sendu-beige-dark)]">Buku</a>
                 <a href="#teaching" class="mobile-link hover:text-[var(--sendu-pink)] py-1.5 mb-1">Pengajaran</a>
-                <a href="https://api.whatsapp.com/send?phone=628770642969991&text=Halo%20Ibu%20Tiara,%20saya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut." target="_blank" class="mobile-link bg-[var(--sendu-outline)] text-white hover:bg-[var(--sendu-text-main)] px-4 py-2.5 rounded-full text-xs font-semibold transition-all shadow-sm w-full mx-auto max-w-[200px]">
-                    Hubungi Beliau
+                <a href="mailto:emailanda@domain.com?subject=Permintaan%20Diskusi%20/%20Konsultasi&body=Halo%20Ibu%20Tiara,%0D%0A%0D%0ASaya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut%20mengenai...%0D%0A%0D%0ATerima%20kasih." class="mobile-link bg-[var(--sendu-outline)] text-white hover:bg-[var(--sendu-text-main)] px-4 py-2.5 rounded-full text-xs font-semibold transition-all shadow-sm w-full mx-auto max-w-[200px] flex items-center justify-center gap-2 anim-paper-plane group">
+                    Hubungi Beliau <i data-lucide="send" class="w-3.5 h-3.5 transition-colors"></i>
                 </a>
             </div>
         </div>
@@ -268,7 +273,7 @@
                 </div>
             </div>
 
-            <!-- Area Foto Dosen (Menggunakan Foto Lokal & Presisi) -->
+            <!-- Area Foto Dosen -->
             <div class="lg:w-1/2 relative flex justify-center w-full mt-4 lg:mt-0 reveal">
                 <div class="relative w-64 h-[20rem] sm:w-72 sm:h-[24rem] md:w-[26rem] md:h-[32rem] lg:w-[28rem] lg:h-[34rem] group mx-auto">
                     
@@ -647,12 +652,50 @@
                         </div>
                         <div class="absolute top-0 left-0 w-3 h-full bg-black/5 shadow-inner"></div>
                     </div>
-                    <div class="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-20 h-20 sm:w-28 sm:h-28 z-10 anim-breathe hidden sm:block">
-                        <svg class="cat-wrapper w-full h-full drop-shadow-lg" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M30 130 C30 80 120 80 120 130 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
-                            <circle cx="75" cy="65" r="35" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
-                            <path d="M45 45 L35 15 L65 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
-                            <path d="M105 45 L115 15 L85 35 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                    
+                    <!-- Animasi Kucing Imut - Diperbaiki agar muncul dan lebih lucu -->
+                    <div class="absolute -bottom-2 -right-4 sm:-bottom-4 sm:-right-8 w-20 h-20 sm:w-28 sm:h-28 z-20 anim-breathe">
+                        <svg class="cat-wrapper w-full h-full drop-shadow-[0_8px_8px_rgba(0,0,0,0.15)]" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <g class="anim-float">
+                                <!-- Tail -->
+                                <path class="anim-tail" d="M100 115 Q140 120 130 80" stroke="var(--sendu-outline)" stroke-width="10" stroke-linecap="round" fill="none" />
+                                <path class="anim-tail" d="M100 115 Q140 120 130 80" stroke="var(--sendu-pink)" stroke-width="4" stroke-linecap="round" fill="none" />
+                                
+                                <!-- Body -->
+                                <path d="M45 150 C45 95 105 95 105 150 Z" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                
+                                <!-- Head -->
+                                <circle cx="75" cy="85" r="32" fill="url(#catBodyGrad)" stroke="var(--sendu-outline)" stroke-width="3" />
+                                
+                                <!-- Ears -->
+                                <g class="anim-ear-l">
+                                    <path d="M52 65 L42 35 L68 55 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                </g>
+                                <g class="anim-ear-r">
+                                    <path d="M98 65 L108 35 L82 55 Z" fill="var(--sendu-pink)" stroke="var(--sendu-outline)" stroke-width="3" stroke-linejoin="round" />
+                                </g>
+                                
+                                <!-- Happy Kawaii Face -->
+                                <path d="M68 88 Q75 95 82 88" stroke="var(--sendu-outline)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+                                
+                                <!-- Blushing Cheeks -->
+                                <circle cx="56" cy="92" r="5" fill="var(--sendu-pink)" class="hover-blush" opacity="0.6" />
+                                <circle cx="94" cy="92" r="5" fill="var(--sendu-pink)" class="hover-blush" opacity="0.6" />
+                                
+                                <!-- Blinking Big Cute Eyes -->
+                                <g class="anim-blink">
+                                    <circle cx="60" cy="82" r="6" fill="var(--sendu-outline)" />
+                                    <circle cx="62" cy="80" r="2" fill="white" />
+                                    <circle cx="90" cy="82" r="6" fill="var(--sendu-outline)" />
+                                    <circle cx="92" cy="80" r="2" fill="white" />
+                                </g>
+                                
+                                <!-- Cute Little Paws hanging on the book -->
+                                <path d="M50 120 Q45 105 35 110" stroke="var(--sendu-outline)" stroke-width="8" stroke-linecap="round" fill="none" />
+                                <path d="M50 120 Q45 105 35 110" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none" />
+                                <path d="M100 120 Q105 105 115 110" stroke="var(--sendu-outline)" stroke-width="8" stroke-linecap="round" fill="none" />
+                                <path d="M100 120 Q105 105 115 110" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" fill="none" />
+                            </g>
                         </svg>
                     </div>
                 </div>
@@ -807,9 +850,9 @@
                         <a href="https://www.instagram.com/tiaranuranisah/" target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-[#E1306C] hover:border-[#E1306C] transition-all transform hover:-translate-y-1 shadow-sm" title="Instagram">
                             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                         </a>
-                        <!-- WhatsApp API -->
-                        <a href="https://api.whatsapp.com/send?phone=628770642969199&text=Halo%20Ibu%20Tiara,%20saya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut." target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-[#25D366] hover:border-[#25D366] transition-all transform hover:-translate-y-1 shadow-sm" title="WhatsApp">
-                            <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <!-- Email Link -->
+                        <a href="mailto:emailanda@domain.com?subject=Permintaan%20Diskusi%20/%20Konsultasi&body=Halo%20Ibu%20Tiara,%0D%0A%0D%0ASaya%20tertarik%20untuk%20berdiskusi%20lebih%20lanjut%20mengenai...%0D%0A%0D%0ATerima%20kasih." class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-[#EA4335] hover:border-[#EA4335] transition-all transform hover:-translate-y-1 shadow-sm" title="Email">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
                         </a>
                         <!-- Twitter / X -->
                         <a href="https://twitter.com/username" target="_blank" rel="noreferrer" class="w-9 h-9 rounded-full bg-white border border-[var(--sendu-beige-dark)] flex items-center justify-center text-[var(--sendu-text-muted)] hover:text-white hover:bg-black hover:border-black transition-all transform hover:-translate-y-1 shadow-sm" title="X / Twitter">
